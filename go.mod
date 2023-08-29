@@ -1,4 +1,4 @@
-module github.com/KayoRonald/validar-cpf
+module github.com/KayoRonald/validador-cpf
 
 go 1.19
 
