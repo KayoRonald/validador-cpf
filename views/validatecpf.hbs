@@ -27,13 +27,33 @@
     var cpf = valor.trim().replace(/[^\d]/g, "");
     var arrayCbf = Array.from(cpf, (x) => parseInt(x))
 
-    var sum = 0
-    for (let i = 0; i < 9; i++) {
-      sum += arrayCbf[i] * (10 - i)
+    function PrimeiroValor(arrayCbf){
+      var sum = 0
+      for (let i = 0; i < 9; i++) {
+        sum += arrayCbf[i] * (10 - i)
+      }
+      var resto = (sun*10) % 11
+      if(resto < 10){
+        return arrayCbf[9] == resto
+      }else{
+        return arrayCbf[9] == 0
+      }
     }
-    var resto = sum % 11
-    Swal.fire(String(resto))
+    function SegundoValor(arrayCbf){
+      var sum = 0
+      for (let i = 0; i < 9; i++) {
+        sum += arrayCbf[i] * (11 - i)
+      }
+      var resto = (sun*10) % 11
+      if(resto < 10){
+        return arrayCbf[10] == resto
+      }else{
+        return arrayCbf[10] == 0
+      }
+    }
 
-    
+    const teste = PrimeiroValor(arrayCbf)
+    console.log(teste)
+    Swal.fire("oi")
   })
 </script>
