@@ -6,7 +6,7 @@
       </label>
       <input
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="cpf" type="text" placeholder="CPF">
+        id="cpf" type="text" placeholder="Ex: 000.000.000-00">
     </div>
     <div class="flex items-center justify-between">
       <button
@@ -17,7 +17,7 @@
     </div>
   </form>
   <p class="text-center text-gray-500 text-xs">
-    &copy;2020, não samos responsáveis por vazamento.
+    &copy;2020, Não samos responsáveis por vazamento :)
   </p>
 </div>
 
@@ -28,7 +28,14 @@
     var arrayCbf = Array.from(cpf, (x) => parseInt(x))
 
     let base = cpf.slice(0, 9);
-    console.log(base)
+    if (cpf.length != 11) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ops',
+        text: `Esse CPF é inválido!`
+      })
+      return 0;
+    }
     function PrimeiroValor(arrayCbf) {
       let sum = 0
       for (let i = 0; i < 9; i++) {
@@ -49,6 +56,7 @@
     }
     const teste = PrimeiroValor(arrayCbf)
     const teste1 = SegundoValor(arrayCbf)
+    let cpfFormating = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
     if (base == cpf) {
       confetti({
         particleCount: 100,
@@ -58,13 +66,13 @@
       Swal.fire({
         icon: 'success',
         title: 'Sucesso!',
-        text: 'Esse CPF é valido'
+        text: `Esse CPF: ${cpfFormating} é válido`
       })
     } else {
       Swal.fire({
         icon: 'error',
         title: 'Ops',
-        text: 'Esse CPF é inválido'
+        text: `Esse CPF: ${cpfFormating} é inválido`
       })
     }
   })

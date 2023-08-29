@@ -4,7 +4,14 @@ document.getElementById("click").addEventListener("click", () => {
   var arrayCbf = Array.from(cpf, (x) => parseInt(x))
 
   let base = cpf.slice(0, 9);
-  console.log(base)
+  if (cpf.length != 11) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Ops',
+      text: `Esse CPF é inválido!`
+    })
+    return 0;
+  }
   function PrimeiroValor(arrayCbf) {
     let sum = 0
     for (let i = 0; i < 9; i++) {
@@ -25,9 +32,23 @@ document.getElementById("click").addEventListener("click", () => {
   }
   const teste = PrimeiroValor(arrayCbf)
   const teste1 = SegundoValor(arrayCbf)
+  let cpfFormating = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
   if (base == cpf) {
-    Swal.fire({icon: 'success', title: 'Sucesso!',  text: 'Esse CPF é valido'})
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+    Swal.fire({
+      icon: 'success',
+      title: 'Sucesso!',
+      text: `Esse CPF: ${cpfFormating} é válido`
+    })
   } else {
-    Swal.fire({icon: 'error', title: 'Ops', text: 'Esse CPF é inválido'})
+    Swal.fire({
+      icon: 'error',
+      title: 'Ops',
+      text: `Esse CPF: ${cpfFormating} é inválido`
+    })
   }
 })

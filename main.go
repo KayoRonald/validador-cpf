@@ -13,6 +13,7 @@ func main() {
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
+  app.Static("/static", "./static")
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.Render("validatecpf", fiber.Map{
 			"Title": "Validar CPF",
