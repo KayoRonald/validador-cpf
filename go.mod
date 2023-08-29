@@ -1,6 +1,6 @@
 module github.com/KayoRonald/validar-cpf
 
-go 1.20.3
+go 1.29
 
 require (
 	github.com/gofiber/fiber/v2 v2.49.0
