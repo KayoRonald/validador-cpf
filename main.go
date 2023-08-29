@@ -26,7 +26,7 @@ func main() {
 	port := os.Getenv("port")
 	if port == "" {
 		log.Print("Environment specified PORT, '3000' otherwise")
-		port = "3000"
+		port = "8080"
 	}
 	app.Listen(":" + port)
 }

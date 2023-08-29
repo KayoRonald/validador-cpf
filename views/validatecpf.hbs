@@ -11,13 +11,13 @@
     <div class="flex items-center justify-between">
       <button
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-        type="button" id="click">
+        type="button" id="click" type="submit">
         Verificar
       </button>
     </div>
   </form>
   <p class="text-center text-gray-500 text-xs">
-    &copy;2020.
+    &copy;2020, não samos responsáveis por vazamento.
   </p>
 </div>
 
@@ -27,33 +27,45 @@
     var cpf = valor.trim().replace(/[^\d]/g, "");
     var arrayCbf = Array.from(cpf, (x) => parseInt(x))
 
-    function PrimeiroValor(arrayCbf){
-      var sum = 0
+    let base = cpf.slice(0, 9);
+    console.log(base)
+    function PrimeiroValor(arrayCbf) {
+      let sum = 0
       for (let i = 0; i < 9; i++) {
         sum += arrayCbf[i] * (10 - i)
       }
-      var resto = (sun*10) % 11
-      if(resto < 10){
-        return arrayCbf[9] == resto
-      }else{
-        return arrayCbf[9] == 0
-      }
+      const resto = sum % 11
+      let digite1 = resto < 2 ? 0 : 11 - resto;
+      base += digite1
     }
-    function SegundoValor(arrayCbf){
-      var sum = 0
-      for (let i = 0; i < 9; i++) {
-        sum += arrayCbf[i] * (11 - i)
+    function SegundoValor(arrayCbf) {
+      let sum = 0
+      for (let i = 0; i < 10; i++) {
+        sum += base[i] * (11 - i)
       }
-      var resto = (sun*10) % 11
-      if(resto < 10){
-        return arrayCbf[10] == resto
-      }else{
-        return arrayCbf[10] == 0
-      }
+      const resto = sum % 11
+      let digite2 = resto < 2 ? 0 : 11 - resto;
+      base += digite2
     }
-
     const teste = PrimeiroValor(arrayCbf)
-    console.log(teste)
-    Swal.fire("oi")
+    const teste1 = SegundoValor(arrayCbf)
+    if (base == cpf) {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Sucesso!',
+        text: 'Esse CPF é valido'
+      })
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ops',
+        text: 'Esse CPF é inválido'
+      })
+    }
   })
 </script>
