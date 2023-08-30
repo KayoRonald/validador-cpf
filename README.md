@@ -16,7 +16,7 @@ cd validador-cpf
 Para executar o projeto, execute o seguinte comando:
 
 ```
-go run main.go
+go run app.go
 ```
 
 O servidor será iniciado na porta 8080.

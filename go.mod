@@ -1,6 +1,8 @@
 module github.com/KayoRonald/validador-cpf
 
-go 1.19
+go 1.21
+
+toolchain go1.21.0
 
 require (
 	github.com/gofiber/fiber/v2 v2.49.0
