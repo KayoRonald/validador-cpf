@@ -2,7 +2,7 @@ const verificCPF = (arrayCPF, cpf) => {
   let base = cpf.slice(0, 9);
   let sum1 = 0
   for (let i = 0; i < 9; i++) {
-    sum1 += arrayCbf[i] * (10 - i)
+    sum1 += arrayCPF[i] * (10 - i)
   }
   const resto1 = sum1 % 11
   let digite1 = resto1 < 2 ? 0 : 11 - resto1;
@@ -18,4 +18,4 @@ const verificCPF = (arrayCPF, cpf) => {
   return cpf == base ? true : false
 }
 
-module.exports = { verificCPF }
+export default verificCPF 
